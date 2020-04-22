@@ -5,6 +5,8 @@
   "main": "index.js",
   "bin": "index.js",
   "scripts": {
+    "package": "rm -rf builds && npm run pkg && ./package.sh",
+    "pkg": "pkg package.json -o builds/hstest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,7 +25,22 @@
   },
   "homepage": "https://github.com/hyperswarm/connect-test#readme",
   "dependencies": {
+    "cross-zip": "^3.0.0",
+    "cross-zip-cli": "^1.0.0",
     "figures": "^2.0.0",
-    "hyperswarm": "^2.11.1"
+    "hyperswarm": "^2.11.1",
+    "pkg": "^4.4.7"
+  },
+  "pkg": {
+    "assets": [
+      "./node_modules/utp-native/prebuilds/**",
+      "./node_modules/blake2b-wasm/blake2b.wasm",
+      "./node_modules/siphash24/siphash24.wasm"
+    ],
+    "targets": [
+      "node12-linux-x64",
+      "node12-macos-x64",
+      "node12-win-x64"
+    ]
   }
 }
